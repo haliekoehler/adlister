@@ -3,9 +3,9 @@
  */
 public class Config {
 
-    private String url = "jdbc:mysql://localhost/adlister_db";
-    private String username = "adlister_user";
-    private String password = "password";
+    public static String url = "jdbc:mysql://localhost/adlister_db";
+    public static String username = "adlister_user";
+    public static String password = "password";
 
     public String getUrl(){
         return url;

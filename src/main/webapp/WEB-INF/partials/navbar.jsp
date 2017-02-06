@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <p class="navbar-brand">ADLISTER</p>
+            <a class="navbar-brand" href="/">ADLISTER</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
 

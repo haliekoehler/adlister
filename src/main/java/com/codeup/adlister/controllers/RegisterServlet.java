@@ -1,6 +1,7 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.dao.Users;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -25,11 +26,16 @@ public class RegisterServlet extends HttpServlet {
         boolean inputHasErrors = username.isEmpty() || email.isEmpty() || password.isEmpty() || (!password.equals(passwordConfirmed));
 
         if (inputHasErrors) {
-            response.sendRedirect("/WEB-INF/register.jsp");
+            doGet(request, response); // show register form again
+        } else {
+
+            User user = new User(username, email, password);
+
+            Users users = DaoFactory.getUsersDao();
+            users.insert(user);
+            request.getSession().setAttribute("user", user); // automatic login
+            response.sendRedirect("profile");
         }
 
-        User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("profile");
     }
 }

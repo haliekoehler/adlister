@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import com.codeup.adlister.util.Password;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,17 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+
+        // input
+        // validation
+        // process
+        // output
+
+        // input --> look for - request.getParameter
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -33,9 +44,16 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        // process --> saving/updating/selecting/deleting from a database
         // create and save a new user
-        User user = new User(username, email, password);
+
+        String hash = Password.hash(password); // <--- saving hashed version of password
+
+        User user = new User(username, email, hash); // <--- using hashed version in password parameter
         DaoFactory.getUsersDao().insert(user);
+
+        // output
+        // request.getRequestDispatcher().forward()
         response.sendRedirect("/login");
     }
 }

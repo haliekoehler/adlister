@@ -8,7 +8,8 @@
 <body>
     <jsp:include page="partials/navbar.jsp" />
     <div class="container">
-        <h1>Please fill in your information.</h1>
+        <h1>Registration Form</h1>
+        <h4>* all fields required</h4>
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
